@@ -6,6 +6,9 @@ String toYAML(Map<String, dynamic> map) {
   map.forEach((key, value) {
     var val = value.toString();
     if (val.contains('#')) {
+      if (val.contains("'")) {
+        val = val.replaceAll("'", "''");
+      }
       val = "'" + val + "'";
     }
     str += key + ': ' + val + '\n';

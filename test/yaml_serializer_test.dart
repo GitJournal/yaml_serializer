@@ -8,13 +8,10 @@ void main() {
       'title': 'foo',
       'version': 1,
     };
-
-    var output = toYAML(map);
     var expectedOutput = '''title: foo
 version: 1
 ''';
-
-    expect(output, expectedOutput);
+    expect(toYAML(map), expectedOutput);
   });
 
   test('Avoid # in strings', () {
@@ -22,12 +19,20 @@ version: 1
       'title': 'foo #bar',
       'version': 1,
     };
-
-    var output = toYAML(map);
     var expectedOutput = '''title: 'foo #bar'
 version: 1
 ''';
+    expect(toYAML(map), expectedOutput);
+  });
 
-    expect(output, expectedOutput);
+  test("Escape ' correctly", () {
+    var map = {
+      'title': "foo #bar's fire",
+      'version': 1,
+    };
+    var expectedOutput = '''title: 'foo #bar''s fire'
+version: 1
+''';
+    expect(toYAML(map), expectedOutput);
   });
 }
