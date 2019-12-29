@@ -1,14 +1,14 @@
 name: yaml_serializer
-description: A new Flutter package project.
-version: 0.0.1
+description: Helps you serialize your Maps into YAML
+version: 0.0.2
 homepage: https://gitjournal.io
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  pedantic: ^1.9.0
-  yaml: ^2.2.0
 
 dev_dependencies:
   test: ^1.9.4
+  pedantic: ^1.9.0
+  yaml: ^2.2.0
