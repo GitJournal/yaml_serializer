@@ -1,4 +1,5 @@
 import 'package:test/test.dart';
+import 'package:yaml/yaml.dart';
 
 import 'package:yaml_serializer/yaml_serializer.dart';
 
@@ -12,6 +13,7 @@ void main() {
 version: 1
 ''';
     expect(toYAML(map), expectedOutput);
+    expect(loadYaml(expectedOutput), map);
   });
 
   test('Avoid # in strings', () {
@@ -23,6 +25,7 @@ version: 1
 version: 1
 ''';
     expect(toYAML(map), expectedOutput);
+    expect(loadYaml(expectedOutput), map);
   });
 
   test("Escape ' correctly", () {
@@ -34,5 +37,6 @@ version: 1
 version: 1
 ''';
     expect(toYAML(map), expectedOutput);
+    expect(loadYaml(expectedOutput), map);
   });
 }
