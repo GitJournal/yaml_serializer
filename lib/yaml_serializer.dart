@@ -1,7 +1,11 @@
 library yaml_serializer;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+String toYAML(Map<String, dynamic> map) {
+  var str = "";
+
+  map.forEach((key, value) {
+    String val = value.toString();
+    str += key + ": " + val + "\n";
+  });
+  return str;
 }
