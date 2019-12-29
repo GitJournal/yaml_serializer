@@ -16,4 +16,18 @@ version: 1
 
     expect(output, expectedOutput);
   });
+
+  test('Avoid # in strings', () {
+    var map = {
+      'title': 'foo #bar',
+      'version': 1,
+    };
+
+    var output = toYAML(map);
+    var expectedOutput = '''title: 'foo #bar'
+version: 1
+''';
+
+    expect(output, expectedOutput);
+  });
 }
