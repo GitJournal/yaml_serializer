@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import 'package:yaml_serializer/yaml_serializer.dart';
 
@@ -10,9 +10,9 @@ void main() {
     };
 
     var output = toYAML(map);
-    var expectedOutput = """title: foo
+    var expectedOutput = '''title: foo
 version: 1
-""";
+''';
 
     expect(output, expectedOutput);
   });
