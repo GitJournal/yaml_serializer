@@ -51,4 +51,16 @@ version: 1
     expect(toYAML(map), expectedOutput);
     expect(loadYaml(expectedOutput), map);
   });
+
+  test('Do not always escape :', () {
+    var map = {
+      'title': 'TODO:work',
+      'version': 1,
+    };
+    var expectedOutput = '''title: TODO:work
+version: 1
+''';
+    expect(toYAML(map), expectedOutput);
+    expect(loadYaml(expectedOutput), map);
+  });
 }
