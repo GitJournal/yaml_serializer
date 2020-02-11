@@ -1,7 +1,7 @@
 library yaml_serializer;
 
 var plainStringNotAllowed = [
-  '#',
+  ' #',
   ': ',
   '? ',
   '- ',
