@@ -5,7 +5,7 @@ String toYAML(Map<String, dynamic> map) {
 
   map.forEach((key, value) {
     var val = value.toString();
-    if (val.contains('#')) {
+    if (val.contains('#') || val.contains(':')) {
       if (val.contains("'")) {
         val = val.replaceAll("'", "''");
       }
