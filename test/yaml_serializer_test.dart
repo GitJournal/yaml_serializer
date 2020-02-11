@@ -1,66 +1,25 @@
+import 'dart:io';
+
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 
 import 'package:yaml_serializer/yaml_serializer.dart';
 
 void main() {
-  test('Basic Test', () {
-    var map = {
-      'title': 'foo',
-      'version': 1,
-    };
-    var expectedOutput = '''title: foo
-version: 1
-''';
-    expect(toYAML(map), expectedOutput);
-    expect(loadYaml(expectedOutput), map);
-  });
+  test('Basic Test', () async {
+    final dir = Directory('test/data/');
+    var lister = dir.list(recursive: false, followLinks: false);
+    await for (var fsEntity in lister) {
+      var file = fsEntity as File;
+      var input = await file.readAsString();
 
-  test('Avoid # in strings', () {
-    var map = {
-      'title': 'foo #bar',
-      'version': 1,
-    };
-    var expectedOutput = '''title: 'foo #bar'
-version: 1
-''';
-    expect(toYAML(map), expectedOutput);
-    expect(loadYaml(expectedOutput), map);
-  });
-
-  test("Escape ' correctly", () {
-    var map = {
-      'title': "foo #bar's fire",
-      'version': 1,
-    };
-    var expectedOutput = '''title: 'foo #bar''s fire'
-version: 1
-''';
-    expect(toYAML(map), expectedOutput);
-    expect(loadYaml(expectedOutput), map);
-  });
-
-  test('Escape : correctly', () {
-    var map = {
-      'title': 'TODO: work',
-      'version': 1,
-    };
-    var expectedOutput = '''title: 'TODO: work'
-version: 1
-''';
-    expect(toYAML(map), expectedOutput);
-    expect(loadYaml(expectedOutput), map);
-  });
-
-  test('Do not always escape :', () {
-    var map = {
-      'title': 'TODO:work',
-      'version': 1,
-    };
-    var expectedOutput = '''title: TODO:work
-version: 1
-''';
-    expect(toYAML(map), expectedOutput);
-    expect(loadYaml(expectedOutput), map);
+      var map = <String, dynamic>{};
+      var yamlMap = loadYaml(input);
+      yamlMap.forEach((key, value) {
+        map[key] = value;
+      });
+      print('Testing ${fsEntity.path}');
+      expect(toYAML(map), input);
+    }
   });
 }
