@@ -39,6 +39,10 @@ String _toYamlString(String val) {
       break;
     }
   }
+  if (val.startsWith('#')) {
+    mustEscape = true;
+  }
+
   if (mustEscape) {
     if (val.contains("'")) {
       val = val.replaceAll("'", "''");
