@@ -1,5 +1,7 @@
 library yaml_serializer;
 
+import 'package:yaml/yaml.dart';
+
 var plainStringNotAllowed = [
   ' #',
   ': ',
@@ -20,7 +22,11 @@ String toYAML(Map<String, dynamic> map) {
     if (value is List) {
       var items = <String>[];
       for (var v in value) {
-        items.add(_toYamlString(v));
+        if (v is YamlList) {
+          items.add(v.toString());
+        } else {
+          items.add(_toYamlString(v.toString()));
+        }
       }
       val = '[' + items.join(', ') + ']';
     } else {
