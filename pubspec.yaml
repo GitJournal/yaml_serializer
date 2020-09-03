@@ -1,6 +1,6 @@
 name: yaml_serializer
 description: Helps you serialize your Maps into YAML
-version: 0.0.7
+version: 0.0.8
 homepage: https://gitjournal.io
 
 environment:
