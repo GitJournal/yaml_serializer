@@ -14,7 +14,6 @@ var plainStringNotAllowed = [
   ']',
   '{',
   '}',
-  ',',
 ];
 
 String toYAML(Map<String, dynamic> map) {
