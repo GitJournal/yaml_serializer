@@ -1,6 +1,5 @@
 library yaml_serializer;
 
-import 'dart:collection';
 import 'dart:convert';
 
 import 'package:yaml/yaml.dart';
@@ -35,7 +34,7 @@ String toYAML(Map<String, dynamic> map) {
       if (value is YamlMap) {
         value = _convertMap(value);
       }
-      val = _indentString(toYAML(value), 2);
+      val = _indentString(toYAML(value as Map<String, dynamic>), 2);
       str += key + ':\n' + val + '\n';
       return;
     } else {
@@ -67,7 +66,7 @@ String _toYamlString(String val) {
   return val;
 }
 
-LinkedHashMap<String, dynamic> _convertMap(YamlMap yamlMap) {
+Map<String, dynamic> _convertMap(YamlMap yamlMap) {
   var map = <String, dynamic>{};
 
   yamlMap.forEach((key, value) {
