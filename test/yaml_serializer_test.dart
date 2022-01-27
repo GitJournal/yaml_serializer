@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 
@@ -21,5 +22,15 @@ void main() {
       print('Testing ${fsEntity.path}');
       expect(toYAML(map), input);
     }
+  });
+
+  test('Yaml order', () {
+    var map = ListMap.of({
+      'b': 1,
+      'a': 2,
+    });
+
+    var expectedOutput = 'b: 1\na: 2\n';
+    expect(toYAML(map), expectedOutput);
   });
 }

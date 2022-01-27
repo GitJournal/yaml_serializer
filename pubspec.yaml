@@ -12,3 +12,4 @@ dependencies:
 dev_dependencies:
   test: ^1.16.8
   lints: ^1.0.1
+  fast_immutable_collections: ^7.1.2
