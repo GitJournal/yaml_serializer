@@ -16,7 +16,7 @@ var plainStringNotAllowed = [
 ];
 
 String toYAML(Map<String, dynamic> map) {
-  var str = '';
+  var b = StringBuffer();
 
   for (var e in map.entries) {
     var key = e.key;
@@ -38,14 +38,14 @@ String toYAML(Map<String, dynamic> map) {
         value = _convertMap(value);
       }
       val = _indentString(toYAML(value as Map<String, dynamic>), 2);
-      str += key + ':\n' + val + '\n';
+      b.writeln(key + ':\n' + val);
       continue;
     } else {
       val = _toYamlString(value.toString());
     }
-    str += key + ': ' + val + '\n';
+    b.writeln(key + ': ' + val);
   }
-  return str;
+  return b.toString();
 }
 
 String _toYamlString(String val) {
